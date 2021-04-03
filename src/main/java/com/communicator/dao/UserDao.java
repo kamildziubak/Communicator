@@ -19,7 +19,7 @@ public class UserDao {
     public boolean userExists(String login)
     {
         try {
-            PreparedStatement statement = connection.prepareStatement("SELECT COUNT(login) FROM user WHERE login='?'");
+            PreparedStatement statement = connection.prepareStatement("SELECT COUNT(login) FROM user WHERE login=?");
             statement.setString(1, login);
             ResultSet result=statement.executeQuery();
             result.next();
@@ -34,7 +34,7 @@ public class UserDao {
     {
         try {
             if (userExists(login)){
-            PreparedStatement statement = connection.prepareStatement("SELECT * FROM user WHERE login='?'");
+            PreparedStatement statement = connection.prepareStatement("SELECT * FROM user WHERE login=?");
             statement.setString(1,login);
             ResultSet result=statement.executeQuery();
             result.next();
@@ -70,7 +70,7 @@ public class UserDao {
     public int registerNewUser(User user)
     {
         try{
-            PreparedStatement statement = connection.prepareStatement("INSERT INTO user VALUES ('?', '?', '?')");
+            PreparedStatement statement = connection.prepareStatement("INSERT INTO user VALUES (?, ?, ?)");
             if(userExists(user.getLogin())) throw new IllegalArgumentException("User exists");
             else
             {
@@ -91,7 +91,7 @@ public class UserDao {
     public int deleteUser(String login)
     {
         try{
-            PreparedStatement statement = connection.prepareStatement("DELETE FROM user WHERE login='?'");
+            PreparedStatement statement = connection.prepareStatement("DELETE FROM user WHERE login=?");
             if(userExists(login))
             {
                 statement.setString(1, login);

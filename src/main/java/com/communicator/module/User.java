@@ -3,7 +3,7 @@ package com.communicator.module;
 public class User {
     String login, name, password;
 
-    public User(String login, String name, String password) {
+    public User(String login, String password, String name) {
         this.login = login;
         this.name = name;
         this.password = password;
