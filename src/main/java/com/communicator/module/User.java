@@ -1,9 +1,11 @@
 package com.communicator.module;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class User {
     String login, name, password;
 
-    public User(String login, String password, String name) {
+    public User(@JsonProperty("login") String login, @JsonProperty("password") String password, @JsonProperty("name") String name) {
         this.login = login;
         this.name = name;
         this.password = password;

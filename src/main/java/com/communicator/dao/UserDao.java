@@ -1,9 +1,11 @@
 package com.communicator.dao;
 import com.communicator.module.User;
+import org.springframework.stereotype.Repository;
 
 import javax.xml.transform.Result;
 import java.sql.*;
 
+@Repository ("user")
 public class UserDao {
     static Connection connection;
 
@@ -19,6 +21,15 @@ public class UserDao {
     {
         try {
             connection=DriverManager.getConnection(url, user, password);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
+
+    public UserDao()
+    {
+        try {
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/communicator", "root", "mjktm");
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
