@@ -2,20 +2,27 @@ package com.communicator.module;
 
 import java.util.GregorianCalendar;
 
-public class Messeage {
+public class Message {
     Integer msg_id;
     String text;
     GregorianCalendar date;
     User send_by, send_to;
     Boolean isRead;
 
-    public Messeage(Integer msg_id, String text, GregorianCalendar date, User send_by, User send_to, Boolean isRead) {
+    public Message(Integer msg_id, String text, GregorianCalendar date, User send_by, User send_to, Boolean isRead) {
         this.msg_id = msg_id;
         this.text = text;
         this.date = date;
         this.send_by = send_by;
         this.send_to = send_to;
         this.isRead=isRead;
+    }
+
+    public Message(String text, User send_by, User send_to)
+    {
+        this.text = text;
+        this.send_by = send_by;
+        this.send_to = send_to;
     }
 
     public Integer getMsg_id() {

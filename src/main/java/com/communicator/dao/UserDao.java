@@ -7,6 +7,14 @@ import java.sql.*;
 public class UserDao {
     static Connection connection;
 
+    static {
+        try {
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/communicator", "root", "mjktm");
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
+
     public UserDao(String url, String user, String password)
     {
         try {
@@ -14,6 +22,11 @@ public class UserDao {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
+    }
+
+    public UserDao(Connection connection)
+    {
+        connection=connection;
     }
 
     public boolean userExists(String login)
