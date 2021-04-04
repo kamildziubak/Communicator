@@ -2,10 +2,7 @@ package com.communicator.api;
 
 import com.communicator.module.User;
 import com.communicator.service.LoginService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("api/login")
@@ -20,5 +17,11 @@ public class LoginControler {
     public boolean verifyLoginData(@RequestBody User user)
     {
         return loginService.verifyLoginData(user.getLogin(), user.getPassword());
+    }
+
+    @PostMapping
+    public int registerNewUser(@RequestBody User user)
+    {
+        return loginService.registerNewUser(user);
     }
 }

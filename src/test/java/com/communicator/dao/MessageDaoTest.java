@@ -3,6 +3,7 @@ package com.communicator.dao;
 import com.communicator.module.Message;
 import com.communicator.module.User;
 import org.junit.jupiter.api.Test;
+import org.springframework.stereotype.Repository;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -11,6 +12,7 @@ import java.util.GregorianCalendar;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+@Repository("message")
 public class MessageDaoTest {
     Connection connection;
     {
@@ -50,7 +52,7 @@ public class MessageDaoTest {
         catch (IllegalArgumentException e){
             System.out.println("Test users already exist, adding step skipped");
         }
-        Message message = new Message("test", send_by, send_to);
+        Message message = new Message("test", send_by.getLogin(), send_to.getLogin());
         messageDao.InsertMessage(message);
         assertTrue(messageDao.messageExists(11));
         messageDao.removeMessage(11);

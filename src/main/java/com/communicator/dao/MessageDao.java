@@ -2,14 +2,24 @@ package com.communicator.dao;
 
 import com.communicator.module.Message;
 import com.communicator.module.User;
+import org.springframework.stereotype.Repository;
 
 import java.sql.*;
 import java.util.GregorianCalendar;
-
+@Repository("message")
 public class MessageDao {
     static Connection connection;
 
     static {
+        try {
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/communicator", "root", "mjktm");
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
+
+    public MessageDao()
+    {
         try {
             connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/communicator", "root", "mjktm");
         } catch (SQLException throwables) {
@@ -62,8 +72,8 @@ public class MessageDao {
                 String text = result.getString("text");
                 GregorianCalendar date = new GregorianCalendar();
                 date.setGregorianChange(result.getDate("date"));
-                User send_by = userDao.getUserByLogin(result.getString("send_by"));
-                User send_to = userDao.getUserByLogin(result.getString("send_to"));
+                String send_by = result.getString("send_by");
+                String send_to = result.getString("send_to");
                 Boolean isRead = false;
 
                 if (result.getString("isRead") == "T")
@@ -83,8 +93,8 @@ public class MessageDao {
         try {
             PreparedStatement statement = connection.prepareStatement("INSERT INTO message (text, send_by, send_to) VALUES (?, ?, ?)");
             statement.setString(1, message.getText());
-            statement.setString(2, message.getSend_by().getLogin());
-            statement.setString(3, message.getSend_to().getLogin());
+            statement.setString(2, message.getSend_by());
+            statement.setString(3, message.getSend_to());
             statement.executeUpdate();
             return 1;
         } catch (SQLException throwables) {
