@@ -74,4 +74,16 @@ public class Message {
     public void read() {
         isRead=true;
     }
+
+    @Override
+    public String toString() {
+        return "Message{" +
+                "msg_id=" + msg_id +
+                ", text='" + text + '\'' +
+                ", date=" + date +
+                ", send_by='" + send_by + '\'' +
+                ", send_to='" + send_to + '\'' +
+                ", isRead=" + isRead +
+                '}';
+    }
 }

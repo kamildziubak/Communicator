@@ -61,4 +61,13 @@ public class MessageDaoTest {
         userDao.deleteUser(send_by.getLogin());
         userDao.deleteUser(send_to.getLogin());
     }
+
+    @Test
+    public void getMessagesBetweenUsersTest()
+    {
+        Message[] messages = messageDao.getMessagesBetweenUsers(new String[] {"thekamil444pl", "agatabogusz16"});
+        System.out.println(messages[0]);
+        System.out.println(messages[1]);
+        System.out.println(messages[2]);
+    }
 }

@@ -103,27 +103,34 @@ public class MessageDao {
         return 0;
     }
 
-    public Message[] getMessagesBetweenUsers(User[] users)
+    public Message[] getMessagesBetweenUsers(String[] users)
     {
         try {
             PreparedStatement statement = connection.prepareStatement("SELECT COUNT(msg_id) FROM(SELECT * FROM message WHERE send_by=? AND send_to=? UNION SELECT * FROM message WHERE send_to=? AND send_by=?) message");
-            statement.setString(1, users[0].getLogin());
-            statement.setString(2, users[1].getLogin());
-            statement.setString(3, users[0].getLogin());
-            statement.setString(4, users[1].getLogin());
+            statement.setString(1, users[0]);
+            statement.setString(2, users[1]);
+            statement.setString(3, users[0]);
+            statement.setString(4, users[1]);
             ResultSet result = statement.executeQuery();
             result.next();
 
             int length = result.getInt(1);
             Message[] messages = new Message[length];
 
-            statement = connection.prepareStatement("SELECT msg_id FROM message WHERE send_by=? AND send_to=? UNION SELECT * FROM message WHERE send_to=? AND send_by=?");
+            statement = connection.prepareStatement("SELECT msg_id FROM message WHERE send_by=? AND send_to=? UNION SELECT msg_id FROM message WHERE send_to=? AND send_by=?");
+
+            statement.setString(1, users[0]);
+            statement.setString(2, users[1]);
+            statement.setString(3, users[0]);
+            statement.setString(4, users[1]);
+
             result=statement.executeQuery();
 
             int i=0;
-            while(result.next())
-                messages[i]= getMessageById(result.getInt(1));
-
+            while(result.next()) {
+                messages[i] = getMessageById(result.getInt(1));
+                i++;
+            }
             return messages;
         } catch (SQLException throwables) {
             throwables.printStackTrace();
