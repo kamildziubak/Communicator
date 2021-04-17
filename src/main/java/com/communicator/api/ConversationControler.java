@@ -21,8 +21,9 @@ public class ConversationControler {
     }
 
     @GetMapping
-    public Message[] getConversation(@RequestBody String[] users)
+    public Message[] getConversation(@RequestParam String user1, @RequestParam String user2)
     {
+        String[] users = {user1, user2};
         return conversationService.getConversation(users).getMessages();
     }
 }
