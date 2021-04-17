@@ -13,10 +13,13 @@ public class LoginControler {
         this.loginService = loginService;
     }
 
-    @GetMapping
-    public boolean verifyLoginData(@RequestBody User user)
+    @GetMapping()
+    public String verifyLoginData(@RequestParam String login, @RequestParam String password)
     {
-        return loginService.verifyLoginData(user.getLogin(), user.getPassword());
+        if(loginService.verifyLoginData(login, password))
+            return "true";
+        else
+            return "false";
     }
 
     @PostMapping
