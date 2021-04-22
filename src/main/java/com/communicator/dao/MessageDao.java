@@ -117,7 +117,7 @@ public class MessageDao {
             int length = result.getInt(1);
             Message[] messages = new Message[length];
 
-            statement = connection.prepareStatement("SELECT msg_id FROM message WHERE send_by=? AND send_to=? UNION SELECT msg_id FROM message WHERE send_to=? AND send_by=?");
+            statement = connection.prepareStatement("SELECT msg_id, date FROM message WHERE send_by=? AND send_to=? UNION SELECT msg_id, date FROM message WHERE send_to=? AND send_by=? ORDER BY date");
 
             statement.setString(1, users[0]);
             statement.setString(2, users[1]);
