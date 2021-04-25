@@ -101,6 +101,7 @@ public class UserDao {
                 statement.setString(1, user.getLogin());
                 statement.setString(2, user.getPassword());
                 statement.setString(3, user.getName());
+                System.out.println(statement.toString());
                 statement.executeUpdate();
                 return 1;
             }

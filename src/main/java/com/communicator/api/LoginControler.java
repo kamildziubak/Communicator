@@ -25,6 +25,7 @@ public class LoginControler {
     @PostMapping
     public int registerNewUser(@RequestBody User user)
     {
+        System.out.println(user.getLogin());
         return loginService.registerNewUser(user);
     }
 }
