@@ -71,7 +71,7 @@ public class MessageDao {
                 Integer msg_id = result.getInt("msg_id");
                 String text = result.getString("text");
                 GregorianCalendar date = new GregorianCalendar();
-                date.setGregorianChange(result.getDate("date"));
+                date.setTime(result.getTimestamp("date"));
                 String send_by = result.getString("send_by");
                 String send_to = result.getString("send_to");
                 Boolean isRead = false;
