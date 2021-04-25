@@ -1,6 +1,7 @@
 package com.communicator.service;
 
 import com.communicator.dao.UserDao;
+import com.communicator.module.User;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
@@ -21,5 +22,10 @@ public class UserService {
         {
             return null;
         }
+    }
+
+    public User[] getAllUsers()
+    {
+        return userDao.getAllUsers();
     }
 }
