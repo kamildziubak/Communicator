@@ -150,4 +150,19 @@ public class MessageDao {
         }
         return 0;
     }
+
+    public int getLastId()
+    {
+        try{
+            Statement statement = connection.createStatement();
+            ResultSet result = statement.executeQuery("SELECT msg_id FROM message ORDER BY msg_id DESC LIMIT 1");
+            result.next();
+            return result.getInt(1);
+        }
+        catch(SQLException throwables)
+        {
+            throwables.printStackTrace();
+        }
+        return 1;
+    }
 }
