@@ -17,13 +17,13 @@ public class ConversationDaoTest {
     @Test
     public void getAllConversationsOfTheUserTest()
     {
-        Conversation[] converations = conversationDao.getAllConversationsOfTheUser("thekamil444pl");
+        Conversation[] converations = conversationDao.getAllConversationsOfTheUser("debug1");
 
-        for(int i=0; i<2; i++)
-            System.out.println(converations[0].getUsers()[i]);
+        /*for(int i=0; i<2; i++)
+            System.out.println(converations[0].getUsers()[i]);*/
 
-       /* assertEquals(new String[]{"thekamil444pl", "agatabogusz16"}, converations[0].getUsers());
-        assertEquals(new String[]{"thekamil444pl", "fighterfacon"}, converations[1].getUsers());
-        */
+        assertEquals("debug1", converations[0].getUsers()[0]);
+        assertEquals("debug2", converations[0].getUsers()[1]);
+
     }
 }

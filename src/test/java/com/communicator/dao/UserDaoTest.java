@@ -14,34 +14,33 @@ public class UserDaoTest {
     @Test
     public void userExistsTest()
     {
-        assertTrue(userDao.userExists("thekamil444pl"));
-        assertFalse(userDao.userExists("erwinek"));
+        assertTrue(userDao.userExists("debug1"));
+        assertTrue(userDao.userExists("debug2"));
     }
 
     @Test
     public void getUserByLoginTest()
     {
-        User user = userDao.getUserByLogin("thekamil444pl");
-        assertEquals("thekamil444pl", user.getLogin());
-        assertEquals("scitystltdbgab", user.getPassword());
-        assertEquals("Kamil", user.getName());
+        User user = userDao.getUserByLogin("debug1");
+        assertEquals("debug1", user.getLogin());
+        assertEquals("", user.getPassword());
     }
 
-    @Test
-    public void getAllUsersTest()
-    {
-        User[] user = userDao.getAllUsers();
-
-        Scanner scanner = null;
-        try {
-            scanner = new Scanner(new File("C:\\Users\\kamil\\Documents\\Communicator\\Backend\\src\\test\\resources\\userTableLength.txt"));
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-        Integer length = Integer.parseInt(scanner.nextLine());
-
-        assertEquals(length, user.length);
-    }
+//    @Test
+//    public void getAllUsersTest()
+//    {
+//        User[] user = userDao.getAllUsers();
+//
+//        Scanner scanner = null;
+//        try {
+//            scanner = new Scanner(new File("C:\\Users\\kamil\\Documents\\Communicator\\Backend\\src\\test\\resources\\userTableLength.txt"));
+//        } catch (FileNotFoundException e) {
+//            e.printStackTrace();
+//        }
+//        Integer length = Integer.parseInt(scanner.nextLine());
+//
+//        assertEquals(length, user.length);
+//    }
 
     @Test
     public void registerNewUserAndDeleteUserTest()

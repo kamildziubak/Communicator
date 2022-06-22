@@ -5,6 +5,8 @@ import com.communicator.module.Message;
 import com.communicator.service.ConversationService;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.SQLException;
+
 @RestController
 @RequestMapping("api/conversation")
 public class ConversationControler {
@@ -21,8 +23,7 @@ public class ConversationControler {
     }
 
     @GetMapping
-    public Message[] getConversation(@RequestParam String user1, @RequestParam String user2)
-    {
+    public Message[] getConversation(@RequestParam String user1, @RequestParam String user2) throws SQLException {
         String[] users = {user1, user2};
         return conversationService.getConversation(users).getMessages();
     }

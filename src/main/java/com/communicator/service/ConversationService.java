@@ -6,12 +6,16 @@ import com.communicator.module.Conversation;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import java.sql.SQLException;
+
 @Service
 public class ConversationService {
     private final ConversationDao conversationDao;
+    private final MessageDao messageDao;
 
-    public ConversationService(@Qualifier("conversation") ConversationDao conversationDao) {
+    public ConversationService(@Qualifier("conversation") ConversationDao conversationDao, @Qualifier("message") MessageDao messageDao) {
         this.conversationDao = conversationDao;
+        this.messageDao = messageDao;
     }
 
     public Conversation[] getAllConversationsOfTheUser(String login)
@@ -19,8 +23,8 @@ public class ConversationService {
         return conversationDao.getAllConversationsOfTheUser(login);
     }
 
-    public Conversation getConversation(String[] users)
-    {
+    public Conversation getConversation(String[] users) throws SQLException {
+        messageDao.markAllMessagesRead(users);
         return new Conversation(users);
     }
 }

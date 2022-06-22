@@ -76,7 +76,7 @@ public class MessageDao {
                 String send_to = result.getString("send_to");
                 Boolean isRead = false;
 
-                if (result.getString("isRead") == "T")
+                if (result.getString("isRead").equals("T"))
                     isRead = true;
 
                 return new Message(msg_id, text, date, send_by, send_to, isRead);
@@ -164,5 +164,12 @@ public class MessageDao {
             throwables.printStackTrace();
         }
         return 1;
+    }
+
+    public void markAllMessagesRead(String[] users) throws SQLException {
+        PreparedStatement statement = connection.prepareStatement("UPDATE message SET isRead='T' WHERE send_to=? AND send_by=?");
+        statement.setString(1, users[0]);
+        statement.setString(2, users[1]);
+        statement.execute();
     }
 }
