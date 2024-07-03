@@ -38,16 +38,6 @@ CREATE TABLE `message` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `message`
---
-
-LOCK TABLES `message` WRITE;
-/*!40000 ALTER TABLE `message` DISABLE KEYS */;
-INSERT INTO `message` VALUES (31,'Kamil, tęsknie za Jolą tak bardzo, codziennie masturbuję się myśląc od niej, jej jęki mam ustawione na dzwonek, nawet kebs już mi nie makuje','2022-06-20 14:31:10','igorfalkon','thekamil444pl','T'),(32,'Rozumiem to, ja tak samo miałem z Kamilą Kowalczyk, teraz z niej się naśmiewam ale to dlatego, że wciąż bardzo ją kocham i wyśmiewanie jej pomaga mi pogodzić się z tym, że nigdy z nią nie będę','2022-06-21 14:04:04','thekamil444pl','igorfalkon','F'),(33,'Kocham Cię <3','2022-06-21 14:10:01','thekamil444pl','agatabogusz16','F');
-/*!40000 ALTER TABLE `message` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `messages`
 --
 
